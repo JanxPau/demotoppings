@@ -1,0 +1,47 @@
+<!-- toppings/list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Toppings</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.name }}
+        <input type="submit" value="Add Toppings">
+    
+        {% if form.errors %}
+          <ul>
+            {% for field in form %}
+              {% for error in field.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+    </form>
+    <div>
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+    </div>
+    <ul>
+    {% for topping in toppings %}
+        <li>{{ topping.name }} 
+        <a href="{% url 'updateToppings' topping.id %}">Edit</a>
+        <a href="{% url 'deleteToppings' topping.id %}">Delete</a>
+        </li>
+    {% endfor %}
+    </ul>
+    
+    <form method="POST">
+      {% csrf_token %}
+      {{ pizzaForm }}
+      <input type="submit">
+    </form>
+</body>
+</html>

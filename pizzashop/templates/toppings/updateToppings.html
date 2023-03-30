@@ -1,0 +1,18 @@
+{% block content %}
+  <h1>Update Topping</h1>
+  
+  <form method="POST">
+      {% csrf_token %}
+      {{ form.name }}
+      <input type="submit" value="Update">
+      {% if form.errors %}
+        <ul>
+          {% for field in form %}
+            {% for error in field.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+  </form>
+{% endblock %}

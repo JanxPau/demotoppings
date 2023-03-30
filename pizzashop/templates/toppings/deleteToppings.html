@@ -1,0 +1,8 @@
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <p>Are you sure you want to delete {{ topping.name }}?</p>
+        <input type="submit" value="Delete">
+        <a href="{% url 'Toppings' %}" class="btn btn-secondary">Back</a>
+    </form>
+{% endblock %}
